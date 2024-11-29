@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"target": "ES2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+		"module": "CommonJS" /* Specify what module code is generated. */,
+		"allowJs": true /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
+		"checkJs": true /* Enable error reporting in type-checked JavaScript files. */,
+		"outDir": "dist" /* Specify an output folder for all emitted files. */,
+		"sourceMap": true,
+		"esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+		"forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+		"strict": true /* Enable all strict type-checking options. */,
+		"declaration": true,
+		"declarationDir": "dist/types",
+		"declarationMap": true
+	},
+
+	"include": ["src/**/*.ts", "types/**/*.ts"],
+	"exclude": ["node_modules"]
+}
