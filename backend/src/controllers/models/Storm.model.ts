@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const Storm = new mongoose.Schema ({
+const StormSchema = new mongoose.Schema ({
     gdacs_id : String,
     name : String,
     from_to : String,
@@ -9,7 +9,10 @@ const Storm = new mongoose.Schema ({
     maximum_wind_speed : String,
     maximum_storm_surge : String,
     vunerability : String,
-    gdacs_score : Number
+    gdacs_score : Number,
+    ended : Boolean
 })
 
-const storm = mongoose.model ('storm', Storm)
+const storm = mongoose.model ('storm', StormSchema)
+
+export default storm
