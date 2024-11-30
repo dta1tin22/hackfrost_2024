@@ -3,7 +3,6 @@ import mongoose from "mongoose"
 import {storm} from "./controllers/models/Storm.model"
 import { Request } from "express"
 import { Response } from "express"
-import {FindStormByName} from "./routes/stormByName"
 import {FindStormByID} from "./routes/stormByID"
 
 const app = Express()
@@ -19,7 +18,6 @@ mongoose.connect (process.env.STORMS_DB_URL as string)
 
 
 // Get a particular Storm
-FindStormByName (app)
 FindStormByID (app)
 
 
