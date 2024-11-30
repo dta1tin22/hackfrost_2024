@@ -10,9 +10,12 @@
             <img src = "/cloud.png" alt = "Cloud" width = 50 height = 50>
             Storm Tracker
         </div>
-        <div class = "bg-zinc-200 w-1/4 h-3/5 rounded justify-self-center" > 
-            <div class = "bg-neutral-950 w-1/9 h-full items-center"> 
+        <div class = "flex bg-zinc-200 w-1/4 h-3/5 rounded justify-self-center" > 
+            <div class = "bg-red-600 rounded w-1/9 h-full items-center"> 
                 <img src = "/glass.png" alt = "Search" width = 50 height = 50 style = "vertical-align:middle">
+            </div>
+            <div class = "bg-transparent rounded w-8/9 h-full items-center"> 
+                <input type = "text" class = "text-zinc-900 placeholder:text-zinc-400 w-full h-full pl-4 outline-none" placeholder = "Find something?"> 
             </div>
         </div>
         <div class = "flex w-3/8 h-1/2 justify-center space-x-2.5"> 
