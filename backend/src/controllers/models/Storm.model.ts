@@ -13,6 +13,4 @@ const StormSchema = new mongoose.Schema ({
     ended : Boolean
 })
 
-const storm = mongoose.model ('storm', StormSchema)
-
-export default storm
+export const storm = mongoose.model ('storm', StormSchema)

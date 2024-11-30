@@ -1,16 +1,30 @@
-import { triggerAsyncId } from "async_hooks"
 import Express from "express" 
 import mongoose from "mongoose"
-import storm from "./controllers/models/Storm.model"
-import DirToStorm from "./routes/storm"
+import {storm} from "./controllers/models/Storm.model"
+import { Request } from "express"
+import { Response } from "express"
+import {FindStormByName} from "./routes/stormByName"
+import {FindStormByID} from "./routes/stormByID"
 
 const app = Express()
+
+// middleware
+app.use (Express.json())
+app.use (Express.urlencoded ({extended: false}))
+
+
 mongoose.connect (process.env.STORMS_DB_URL as string)
     .then(() => console.log ("Connect successfully !!!!"))
     .catch (() => console.log ("Connection failed"))
 
 
-app.get ('/', async (req : any, res : any) => {
+// Get a particular Storm
+FindStormByName (app)
+FindStormByID (app)
+
+
+// get the entire Storms in DB
+app.get ('/', async (req : Request, res : Response) => {
     try {
         const storms = await storm.find ({})
         res.status (200).json (storms)
@@ -19,7 +33,18 @@ app.get ('/', async (req : any, res : any) => {
     }
 })
 
-DirToStorm (app)
+
+// Just for Test
+app.post ('/', async (req : Request, res : Response) => {
+    try {
+        const storms = await storm.create (req.body);
+        res.status (200).json(storms)
+    } catch (error : any){
+        res.status (500).json ({message : error.message})
+    }
+})
+
+
 
 app.listen (process.env.PORT)
 
