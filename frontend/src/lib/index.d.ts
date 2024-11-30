@@ -1,6 +1,4 @@
-// place files you want to import through the `$lib` alias in this folder.
-
-export interface StormInformation {
+interface StormInformation {
 	gdacs_id: string;
 	name: string;
 	from_to: string;
