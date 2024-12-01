@@ -5,6 +5,7 @@ import { Request } from "express"
 import { Response } from "express"
 import {FindStormByID} from "./routes/stormByID"
 import { SendData } from "./controllers/SendDataToDB"
+import { SearchStorm } from "./routes/SearchStorms"
 
 const app = Express()
 
@@ -20,7 +21,8 @@ mongoose.connect (process.env.STORMS_DB_URL as string)
 
 
 // Get a particular Storm
-FindStormByID (app)
+SearchStorm (app)
+// FindStormByID (app)
 
 
 // get the entire Storms from DB
