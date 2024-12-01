@@ -1,8 +1,7 @@
 import {Express} from "express"
-import express from "express"
-import {SendJSON} from "../controllers/SendJSON"
+import {SendData} from "../controllers/SendDataToDB"
 
 export const SendDataFromAPI = (app : Express) => {
-    app.use(express.json())
-    app.post('/send', SendJSON)
+    app.post('/', SendData)
 }
+
