@@ -1,12 +1,15 @@
 <script lang="ts">
-	import { Cloud } from 'lucide-svelte';
+	import { Tornado } from 'lucide-svelte';
 	import LinkHeader from './more_components/LinkHeader.svelte';
 
 	interface LinkHeaderProps {
-		onSearch?: () => void
+		onSearch?: (searchValue : string) => void
 	}
 
 	let { onSearch } : LinkHeaderProps = $props()
+	
+	let searchValue = $state("")
+	let timer: NodeJS.Timeout | null = null;
 </script>
 
 <header class="bg-neutral-900">
@@ -14,17 +17,21 @@
 		<div
 			class="flex w-1/3 text-slate-200 justify-self-start pl-60 items-center space-x-2"
 		>
-			<Cloud class="w-9 h-9"/>
-			<span class="font-bold text-3xl">Storm Tracker</span>
+			<a href='/'><Tornado class="w-9 h-9" /></a>
+			<a href='/'><span class="font-bold text-3xl">Storm Tracker</span></a>
 		</div>
 		<div class="h-10 w-1/3 flex items-center justify-center">
 			<input 
 				class="bg-slate-100 outline-0 w-2/3 h-full rounded-md p-3" 
 				type="text" 
 				placeholder="Search storm..."
-				onchange={() => {
+				bind:value={searchValue}
+				oninput={() => {
 					if(onSearch){
-						onSearch()
+						if(timer) clearTimeout(timer)
+						timer = setTimeout(() => {
+							onSearch(searchValue)
+						}, 100)
 					}
 				}}
 			>

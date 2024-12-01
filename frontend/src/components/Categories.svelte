@@ -7,6 +7,6 @@
 	let { children }: CategoryProps = $props();
 </script>
 
-<div class="bg-transparent text-center text-5xl font-bold text-zinc-900 w-full h-full py-2">
+<div class="bg-transparent text-center text-5xl font-bold text-slate-100 w-full h-full">
 	{@render children()}
 </div>

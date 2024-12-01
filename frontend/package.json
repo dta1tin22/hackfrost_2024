@@ -15,6 +15,7 @@
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@tailwindcss/postcss": "4.0.0-beta.2",
 		"@tailwindcss/vite": "4.0.0-beta.2",
+		"embla-carousel": "^8.5.1",
 		"embla-carousel-svelte": "^8.5.1",
 		"lucide-svelte": "^0.462.0",
 		"svelte": "^5.0.0",
