@@ -32,7 +32,9 @@ FindStormByID (app)
 app.get ('/', async (req : Request, res : Response) => {
     try {
         const storms : Array <StormModel> = await storm.find ({})
-        res.status (200).json (storms)
+        res.status (200).json ({
+            stormsInformation: storms
+        })
     }catch (error : any) {
         res.status (500).json ({message : error.message})
     }

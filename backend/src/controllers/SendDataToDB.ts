@@ -30,7 +30,9 @@ export const SendData = async (req : Request, res : Response) => {
         })
 
         console.log ("SUCCESS", Upload, ExpiredStorms)
-        res.status (200).send ("success")
+        res.status (200).send ({
+            message: "success",
+        })
     } catch (error : any){
         res.status (500).json ({message : error.message})
     }
