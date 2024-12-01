@@ -1,7 +1,6 @@
-import {SearchSimilar} from "../controllers/Search"
-import { Express } from "express"
+import { SearchSimilar } from '../controllers/Search';
+import { Express } from 'express';
 
-export const SearchStorm = (app : Express) => {
-    app.get ('/search', SearchSimilar)
-}
-
+export const SearchStorm = (app: Express) => {
+	app.get('/search', SearchSimilar);
+};

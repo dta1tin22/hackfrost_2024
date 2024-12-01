@@ -1,27 +1,27 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "tsx watch --tsconfig ./tsconfig.json --env-file=.env src/server.ts",
-    "build": "rm ./dist -rf && tsc-esm",
-    "preview": "NODE_ENV=production node --env-file=./.env dist/server.js",
-    "start": "node dist/server.js"
-  },
-  "devDependencies": {
-    "@digitak/tsc-esm": "^3.1.4",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.9.4",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
-  },
-  "type": "module",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.1",
-    "mongodb": "^6.11.0",
-    "mongoose": "^8.8.3"
-  }
+	"name": "backend",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "tsx watch --tsconfig ./tsconfig.json --env-file=.env src/server.ts",
+		"build": "rm ./dist -rf && tsc-esm",
+		"preview": "NODE_ENV=production node --env-file=./.env dist/server.js",
+		"start": "node dist/server.js"
+	},
+	"devDependencies": {
+		"@digitak/tsc-esm": "^3.1.4",
+		"@types/cors": "^2.8.17",
+		"@types/express": "^5.0.0",
+		"@types/node": "^22.9.4",
+		"tsx": "^4.19.2",
+		"typescript": "^5.7.2"
+	},
+	"type": "module",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.5",
+		"express": "^4.21.1",
+		"mongodb": "^6.11.0",
+		"mongoose": "^8.8.3"
+	}
 }

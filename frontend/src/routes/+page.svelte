@@ -26,7 +26,7 @@
 			vulnerability: '--',
 			gdacs_score: 0.5
 		}
-	]
+	];
 	const history = [
 		{
 			gdacs_id: 'TC 1001128',
@@ -215,44 +215,50 @@
 			vulnerability: '--',
 			gdacs_score: 0.5
 		}
-	]
+	];
 
 	let isSeaching = $state(false);
 </script>
 
 <svelte:head>
 	<title>Storm Tracker</title>
-	<meta name="description" content="Storm Tracker"/>
+	<meta name="description" content="Storm Tracker" />
 </svelte:head>
 
-<Header onSearch={(searchValue) => {
-	if(searchValue.length > 0) isSeaching = true;
-	else isSeaching = false;
-	console.log("here")
-}} />
+<Header
+	onSearch={(searchValue) => {
+		if (searchValue.length > 0) isSeaching = true;
+		else isSeaching = false;
+		console.log('here');
+	}}
+/>
 
 <div class="my-8 space-y-20">
 	{#if isSeaching}
 		<section class="space-y-8">
 			<Categories>Search Results</Categories>
-     		<StormDisplay stormsInformation={liveStorms}/>
+			<StormDisplay stormsInformation={liveStorms} />
 		</section>
 	{:else}
 		<section class="space-y-8 mb-28">
 			<Categories>Live</Categories>
 			{#if liveStorms.length > 0}
-				<StormDisplay stormsInformation={liveStorms}/>
+				<StormDisplay stormsInformation={liveStorms} />
 			{:else}
-				<p class="text-2xl font-bold text-center text-slate-100 p-2 rounded">No storms reported today.</p>
+				<p class="text-2xl font-bold text-center text-slate-100 p-2 rounded">
+					No storms reported today.
+				</p>
 			{/if}
 		</section>
 		<div class="bg-slate-100 w-1/2 h-[2px] mx-auto rounded-full"></div>
 		<section class="space-y-8">
 			<Categories>History</Categories>
 			{#if history.length > 0}
-				<StormDisplay stormsInformation={history}/>
+				<StormDisplay stormsInformation={history} />
 			{:else}
-				<p class="text-lg text-center text-white bg-black bg-opacity-50 p-2 rounded">No storms reported recent.</p>
+				<p class="text-lg text-center text-white bg-black bg-opacity-50 p-2 rounded">
+					No storms reported recent.
+				</p>
 			{/if}
 		</section>
 	{/if}

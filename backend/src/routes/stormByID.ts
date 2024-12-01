@@ -1,9 +1,6 @@
-import {GetStormById} from "../controllers/GetParticularStorm"
-import { Express } from "express"
+import { GetStormById } from '../controllers/GetParticularStorm';
+import { Express } from 'express';
 
-export const FindStormByID = (app : Express) => {
-    app.get ('/:_id', GetStormById)
-}
-
-
-
+export const FindStormByID = (app: Express) => {
+	app.get('/:_id', GetStormById);
+};

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
+	import type { Snippet } from 'svelte';
 
-	interface StormInfoCardProps{
-		icon: Snippet
-		title: string
-		children: Snippet
+	interface StormInfoCardProps {
+		icon: Snippet;
+		title: string;
+		children: Snippet;
 	}
 
-	const { icon, title, children } : StormInfoCardProps = $props()
+	const { icon, title, children }: StormInfoCardProps = $props();
 </script>
 
 <div class="rounded-lg p-4 shadow-md bg-slate-300 space-y-4">

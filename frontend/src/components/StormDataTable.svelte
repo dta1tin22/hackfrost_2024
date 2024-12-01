@@ -1,37 +1,37 @@
 <script lang="ts">
-	import type { StormInformation } from "$lib";
-	import StormInfoCard from "./StormInfoCard.svelte";
-	import { AlertTriangle, Calendar, Cloud, Users, Waves, Wind } from "lucide-svelte"
+	import type { StormInformation } from '$lib';
+	import StormInfoCard from './StormInfoCard.svelte';
+	import { AlertTriangle, Calendar, Cloud, Users, Waves, Wind } from 'lucide-svelte';
 
-	interface StormDataTableProps{
-		data: StormInformation
+	interface StormDataTableProps {
+		data: StormInformation;
 	}
 
-	let { data }: StormDataTableProps = $props()
+	let { data }: StormDataTableProps = $props();
 </script>
 
 {#snippet calendarIcon()}
-	<Calendar/>
+	<Calendar />
 {/snippet}
 
 {#snippet cloudIcon()}
-	<Cloud/>
+	<Cloud />
 {/snippet}
 
 {#snippet peopleIcon()}
-	<Users/>
+	<Users />
 {/snippet}
 
 {#snippet windIcon()}
-	<Wind/>
+	<Wind />
 {/snippet}
 
 {#snippet wavesIcon()}
-	<Waves/>
+	<Waves />
 {/snippet}
 
 {#snippet alertIcon()}
-	<AlertTriangle/>
+	<AlertTriangle />
 {/snippet}
 
 <div class="grid grid-cols-2 gap-6">
