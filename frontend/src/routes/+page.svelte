@@ -218,7 +218,9 @@ const history = [
 	]
 </script>
 
-<Header />
+<Header onSearch={() => {
+	console.log("Searching")
+}} />
 <div class="flex flex-col flex-wrap my-8 justify-start content-center">
 	<section>
 		<Categories>Live</Categories>

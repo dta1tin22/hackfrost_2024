@@ -1,31 +1,38 @@
 <script lang="ts">
-	import Button from './more_components/Button.svelte';
+	import { Cloud } from 'lucide-svelte';
+	import LinkHeader from './more_components/LinkHeader.svelte';
+
+	interface LinkHeaderProps {
+		onSearch?: () => void
+	}
+
+	let { onSearch } : LinkHeaderProps = $props()
 </script>
 
-<div class="bg-zinc-200">
-	<div class="flex w-full h-20 bg-neutral-900 items-center">
+<header class="bg-neutral-900">
+	<div class="flex justify-between w-full p-4 max-md:p-2 items-center">
 		<div
-			class="flex w-3/8 h-1/2 font-bold text-3xl text-zinc-200 justify-self-start pl-60 items-center"
+			class="flex w-1/3 text-slate-200 justify-self-start pl-60 items-center space-x-2"
 		>
-			<img src="/cloud.png" alt="Cloud" width="50" height="50" />
-			Storm Tracker
+			<Cloud class="w-9 h-9"/>
+			<span class="font-bold text-3xl">Storm Tracker</span>
 		</div>
-		<div class="flex bg-zinc-200 w-1/4 h-3/5 rounded justify-self-center">
-			<div class="bg-red-600 rounded w-1/9 h-full items-center">
-				<img src="/glass.png" alt="Search" width="50" height="50" style="vertical-align:middle" />
-			</div>
-			<div class="bg-transparent rounded w-8/9 h-full items-center">
-				<input
-					type="text"
-					class="text-zinc-900 placeholder:text-zinc-400 w-full h-full pl-4 outline-none"
-					placeholder="Find something?"
-				/>
-			</div>
+		<div class="h-10 w-1/3 flex items-center justify-center">
+			<input 
+				class="bg-slate-100 outline-0 w-2/3 h-full rounded-md p-3" 
+				type="text" 
+				placeholder="Search storm..."
+				onchange={() => {
+					if(onSearch){
+						onSearch()
+					}
+				}}
+			>
 		</div>
-		<div class="flex w-3/8 h-1/2 justify-center space-x-2.5">
-			<Button>Home</Button>
-			<Button>About</Button>
-			<Button>Contact</Button>
-		</div>
+		<nav class="flex w-1/3 justify-center space-x-6">
+			<LinkHeader href='/'>Home</LinkHeader>
+			<LinkHeader href='/fskld'>About</LinkHeader>
+			<LinkHeader href='/'>Contact</LinkHeader>
+		</nav>
 	</div>
-</div>
+</header>
