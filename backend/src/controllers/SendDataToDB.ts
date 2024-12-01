@@ -1,11 +1,13 @@
 import { Request, Response } from "express"
 import { storm } from "./models/Storm.model"
+import { Transform } from "../utils/TransfromJSON"
 
 export const SendData = async (req : Request, res : Response) => {
     try {
-        const newStorms = req.body.stormsInformation as Array <StormModel>
+        const New = req.body.stormsInformation as Array <IncomingModel>
         // console.log (newStorms[0])
-
+       const newStorms : Array<StormModel> = Transform(New : Array <IncomingModel>) 
+       
         // Update storms, add if they haven't existed
         const bulk = await newStorms.map ((OneStorm : StormModel) => ({
             updateOne: {
@@ -27,7 +29,7 @@ export const SendData = async (req : Request, res : Response) => {
             ended : true
         })
 
-        // console.log ("SUCCESS", Upload, ExpiredStorms)
+        console.log ("SUCCESS", Upload, ExpiredStorms)
         res.status (200).send ("success")
     } catch (error : any){
         res.status (500).json ({message : error.message})
