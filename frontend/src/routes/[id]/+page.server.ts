@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 
 	const data = await response.json();
 
-	console.log(data);
+	// console.log(data);
 
 	return data as StormInformation
 }

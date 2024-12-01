@@ -7,7 +7,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
 
 	const data = await response.json();
 
-	console.log(data)
+	// console.log(data)
 
 	let liveStorms : StormInformation[] = []
 	let historyStorms : StormInformation[] = [];
