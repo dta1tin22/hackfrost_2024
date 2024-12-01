@@ -6,7 +6,7 @@ export const SendData = async (req : Request, res : Response) => {
     try {
         const New = req.body.stormsInformation as Array <IncomingModel>
         // console.log (newStorms[0])
-       const newStorms : Array<StormModel> = Transform(New : Array <IncomingModel>) 
+       const newStorms  = await Transform(New) 
        
         // Update storms, add if they haven't existed
         const bulk = await newStorms.map ((OneStorm : StormModel) => ({
