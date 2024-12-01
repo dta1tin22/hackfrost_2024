@@ -4,6 +4,7 @@ import {storm} from "./controllers/models/Storm.model"
 import { Request } from "express"
 import { Response } from "express"
 import {FindStormByID} from "./routes/stormByID"
+import { SendDataFromAPI } from "./routes/SendData"
 
 const app = Express()
 
@@ -19,6 +20,10 @@ mongoose.connect (process.env.STORMS_DB_URL as string)
 
 // Get a particular Storm
 FindStormByID (app)
+// Send data to server
+SendDataFromAPI (app)
+
+
 
 
 // get the entire Storms in DB
