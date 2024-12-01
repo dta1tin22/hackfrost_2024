@@ -218,20 +218,18 @@ const history = [
 	]
 </script>
 
-<main class="h-dvh">
-	<Header />
-	<div class="flex flex-col flex-wrap my-8 justify-start content-center">
-		<section>
-			<Categories>Live</Categories>
-			{#if liveStorms.length > 0}
-			  <StormDisplay stormsInformation={liveStorms}/>
-			{:else}
-			<p class="text-lg text-center text-white bg-black bg-opacity-50 p-2 rounded">No storms reported today.</p>
-			{/if}
-		</section>
-		<section>
-			<Categories>History</Categories>
-			<!-- Storm cards -->
-		</section>
-	</div>
-</main>
+<Header />
+<div class="flex flex-col flex-wrap my-8 justify-start content-center">
+	<section>
+		<Categories>Live</Categories>
+		{#if liveStorms.length > 0}
+			<StormDisplay stormsInformation={liveStorms}/>
+		{:else}
+		<p class="text-lg text-center text-white bg-black bg-opacity-50 p-2 rounded">No storms reported today.</p>
+		{/if}
+	</section>
+	<section>
+		<Categories>History</Categories>
+		<!-- Storm cards -->
+	</section>
+</div>

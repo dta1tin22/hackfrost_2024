@@ -3,6 +3,7 @@
 	import StormInfoCard from "$components/StormInfoCard.svelte";
 	import StormScoreBar from "$components/StormScoreBar.svelte";
 	import type { StormInformation } from "$lib";
+	import { AlertTriangle, Calendar, Cloud, Users, Waves, Wind } from "lucide-svelte"
 
 	const data : StormInformation = {
 		gdacs_id: 'TC 1001130',
@@ -17,27 +18,52 @@
 	}
 </script>
 
-<main class="min-h-dvh">
-	<Header/>
-	<section class="py-10 space-y-10 w-4xl mx-auto">
-		<h1 class="text-4xl font-bold text-center">{data.name} Information</h1>
-		<div class="bg-amber-100 shadow-xl p-6 rounded-lg grid grid-cols-2 gap-6">
-			<StormInfoCard title="Date">
+{#snippet calendarIcon()}
+	<Calendar/>
+{/snippet}
+
+{#snippet cloudIcon()}
+	<Cloud/>
+{/snippet}
+
+{#snippet peopleIcon()}
+	<Users/>
+{/snippet}
+
+{#snippet windIcon()}
+	<Wind/>
+{/snippet}
+
+{#snippet wavesIcon()}
+	<Waves/>
+{/snippet}
+
+{#snippet alertIcon()}
+	<AlertTriangle/>
+{/snippet}
+
+<Header/>
+
+<section class="py-10 space-y-10 max-w-4xl mx-auto">
+	<h1 class="text-slate-200 text-4xl font-bold text-center">{data.name} Information</h1>
+	<div class="bg-slate-100 opacity-85 rounded-lg p-6 space-y-10">
+		<div class="grid grid-cols-2 gap-6">
+			<StormInfoCard icon={calendarIcon} title="Date Range">
 				<p class="text-lg">{data.from_to}</p>
 			</StormInfoCard>
-			<StormInfoCard title="Exposed Countries">
+			<StormInfoCard icon={cloudIcon} title="Exposed Countries">
 				<p class="text-lg">{data.exposed_countries}</p>
 			</StormInfoCard>
-			<StormInfoCard title="Exposed Population">
+			<StormInfoCard icon={peopleIcon} title="Exposed Population">
 				<p class="text-lg">{data.exposed_population}</p>
 			</StormInfoCard>
-			<StormInfoCard title="Maximum Wind Speed">
+			<StormInfoCard icon={windIcon} title="Maximum Wind Speed">
 				<p class="text-lg">{data.maximum_wind_speed}</p>
 			</StormInfoCard>
-			<StormInfoCard title="Maximum Storm Surge">
+			<StormInfoCard icon={wavesIcon} title="Maximum Storm Surge">
 				<p class="text-lg">{data.maximum_storm_surge}</p>
 			</StormInfoCard>
-			<StormInfoCard title="Vulnerability">
+			<StormInfoCard icon={alertIcon} title="Vulnerability">
 				<p class="text-lg">{data.vulnerability}</p>
 			</StormInfoCard>
 		</div>
@@ -45,5 +71,5 @@
 			<h2 class="text-2xl font-semibold">Storm Severity Score</h2>
 			<StormScoreBar score={data.gdacs_score}/>
 		</div>
-	</section>
-</main>
+	</div>
+</section>

@@ -69,6 +69,9 @@ importers:
       embla-carousel-svelte:
         specifier: ^8.5.1
         version: 8.5.1(svelte@5.2.8)
+      lucide-svelte:
+        specifier: ^0.462.0
+        version: 0.462.0(svelte@5.2.8)
       svelte:
         specifier: ^5.0.0
         version: 5.2.8
@@ -1241,6 +1244,11 @@ packages:
 
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+
+  lucide-svelte@0.462.0:
+    resolution: {integrity: sha512-BTY44UyXEhlakuPMS4w7NayKhDYARzmhEv3E2YchTiNZ/aySS0F2ktPscTlXRgSZ9xwqoozhnhO1oKhm/nnmqg==}
+    peerDependencies:
+      svelte: ^3 || ^4 || ^5.0.0-next.42
 
   magic-string@0.30.13:
     resolution: {integrity: sha512-8rYBO+MsWkgjDSOvLomYnzhdwEG51olQ4zL5KXnNJWV5MNmrb4rTZdrtkhxjnD/QyZUqR/Z/XDsUs/4ej2nx0g==}
@@ -2646,6 +2654,10 @@ snapshots:
       p-locate: 5.0.0
 
   lodash.merge@4.6.2: {}
+
+  lucide-svelte@0.462.0(svelte@5.2.8):
+    dependencies:
+      svelte: 5.2.8
 
   magic-string@0.30.13:
     dependencies:
