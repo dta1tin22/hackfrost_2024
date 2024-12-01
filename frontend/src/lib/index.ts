@@ -13,7 +13,6 @@ export interface StormInformation {
 	vulnerability: string;
 	gdacs_score: number;
 }
-<<<<<<< HEAD
 
 export const searchStorms = async (value: string) => {
 	const response = await fetch(`${PUBLIC_SERVER_URL}/search?value=${value}`)
@@ -22,5 +21,3 @@ export const searchStorms = async (value: string) => {
 
 	return data.stormsInformation as StormInformation[];
 }
-=======
->>>>>>> e35faef (Format code)
