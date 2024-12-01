@@ -26,7 +26,7 @@ FindStormByID (app)
 // get the entire Storms from DB
 app.get ('/', async (req : Request, res : Response) => {
     try {
-        const storms = await storm.find ({})
+        const storms : Array <StormModel> = await storm.find ({})
         res.status (200).json (storms)
     }catch (error : any) {
         res.status (500).json ({message : error.message})
