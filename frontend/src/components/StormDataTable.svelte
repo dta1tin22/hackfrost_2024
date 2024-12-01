@@ -39,7 +39,7 @@
 		<p class="text-lg">{data.from_to}</p>
 	</StormInfoCard>
 	<StormInfoCard icon={cloudIcon} title="Exposed Countries">
-		<p class="text-lg">{data.exposed_countries}</p>
+		<p class="text-lg">{data.exposed_countries.join(', ')}</p>
 	</StormInfoCard>
 	<StormInfoCard icon={peopleIcon} title="Exposed Population">
 		<p class="text-lg">{data.exposed_population}</p>

@@ -9,7 +9,7 @@
 	let { stormInformation }: StormCardProps = $props();
 </script>
 
-<a href="/fsdaf">
+<a href={`/${stormInformation._id}`}>
 	<div class="bg-slate-100 min-h-40 rounded-lg p-4 hover:opacity-100 opacity-85">
 		<h2 class="text-2xl font-bold mb-4">{stormInformation.name}</h2>
 		<ul class="space-y-1">

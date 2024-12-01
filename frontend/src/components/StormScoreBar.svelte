@@ -5,7 +5,7 @@
 
 	const { score }: StormScoreBarProps = $props();
 
-	const percentage = (score / 2) * 100;
+	const percentage = (score / 3) * 100;
 
 	const gradientColor = `linear-gradient(90deg, 
     rgb(0, 200, 0) 0%, 
@@ -20,7 +20,7 @@
 	></div>
 	<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center">
 		<span class="text-lg font-bold">
-			{score} / 2
+			{score} / 3
 		</span>
 	</div>
 </div>
