@@ -2,7 +2,8 @@
 	import Header from '$components/Header.svelte';
 	import Categories from '$components/Categories.svelte';
 	import StormDisplay from '$components/StormDisplay.svelte';
-	import { searchStorms, type StormInformation } from '$lib';
+	import { type StormInformation } from '$lib';
+	import { PUBLIC_SERVER_URL } from '$env/static/public';
 
 	const { data } = $props();
 
@@ -11,6 +12,14 @@
 
 	let isSeaching = $state(false);
 	let searchResult: StormInformation[] | null = $state(null)
+
+	const searchStorms = async (value: string) => {
+		const response = await fetch(`${PUBLIC_SERVER_URL}/search?value=${value}`)
+
+		const data = await response.json();
+
+		return data.stormsInformation as StormInformation[];
+	}
 </script>
 
 <svelte:head>

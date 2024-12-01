@@ -1,7 +1,5 @@
 // place files you want to import through the `$lib` alias in this folder.
 
-import { PUBLIC_SERVER_URL } from "$env/static/public";
-
 export interface StormInformation {
 	_id: string;
 	name: string;
@@ -12,12 +10,4 @@ export interface StormInformation {
 	maximum_storm_surge: string;
 	vulnerability: string;
 	gdacs_score: number;
-}
-
-export const searchStorms = async (value: string) => {
-	const response = await fetch(`${PUBLIC_SERVER_URL}/search?value=${value}`)
-
-	const data = await response.json();
-
-	return data.stormsInformation as StormInformation[];
 }
