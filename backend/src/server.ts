@@ -10,10 +10,10 @@ import cors, { CorsOptions } from 'cors';
 
 const app = Express();
 
-const corsOptions: CorsOptions = {
-	origin: process.env.CLIENT_URL,
-	optionsSuccessStatus: 200
-};
+const corsOptions : CorsOptions = {
+    origin: process.env.CLIENT_URL,
+    optionsSuccessStatus: 200
+}
 
 // middleware
 app.use(Express.json());
