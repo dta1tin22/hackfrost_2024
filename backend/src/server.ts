@@ -22,7 +22,7 @@ mongoose.connect (process.env.STORMS_DB_URL as string)
 
 // Get a particular Storm
 SearchStorm (app)
-// FindStormByID (app)
+FindStormByID (app)
 
 
 // get the entire Storms from DB
