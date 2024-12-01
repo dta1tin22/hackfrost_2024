@@ -1,6 +1,5 @@
 import express from 'express';
 
-<<<<<<< HEAD
 const parseMonth = (monthString: string) => {
 	switch(monthString){
 		case 'Jan':
@@ -30,13 +29,6 @@ const parseMonth = (monthString: string) => {
     default:
 			return 0;
 	}
-=======
-export const Transform = async(Storms: Array<IncomingModel>) => {
-    let Result = await Storms.map((OneStorm : IncomingModel) => ({
-        ...OneStorm, exposed_countries : OneStorm.exposed_countries.split(", ")
-    }))
-    return Result as Array<StormModel>
->>>>>>> d7fdfde (Finish Backend)
 }
 
 const isEnded = (date: string) => {
