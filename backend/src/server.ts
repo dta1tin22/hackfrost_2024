@@ -4,6 +4,7 @@ import {storm} from "./controllers/models/Storm.model"
 import { Request } from "express"
 import { Response } from "express"
 import {FindStormByID} from "./routes/stormByID"
+import { SendData } from "./controllers/SendDataToDB"
 
 const app = Express()
 
@@ -34,27 +35,8 @@ app.get ('/', async (req : Request, res : Response) => {
 
 
 // Just for Test
-app.post ('/', async (req : Request, res : Response) => {
-    try {
-        const newStorms = req.body.stormsInformation as Array <StormModel>
-        console.log (newStorms[0])
+app.post ('/', SendData)
 
-        const bulk = await newStorms.map ((OneStorm : StormModel) => ({
-            updateOne: {
-                filter: {name : OneStorm.name},
-                update: OneStorm,
-                upsert: true
-            },   
-        }))
-
-        const result = await storm.bulkWrite (bulk)
-        
-        console.log ("SUCCESS", result)
-        res.status (200).send ("success")
-    } catch (error : any){
-        res.status (500).json ({message : error.message})
-    }
-})
 
 
 
