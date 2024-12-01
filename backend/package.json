@@ -1,18 +1,18 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "tsx watch --tsconfig ./tsconfig.json --env-file=.env src/server.ts",
-    "build": "rm ./dist -rf && tsc-esm",
-    "preview": "NODE_ENV=production node --env-file=./.env dist/server.js",
+	"name": "backend",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "tsx watch --tsconfig ./tsconfig.json --env-file=.env src/server.ts",
+		"build": "rm ./dist -rf && tsc-esm",
+		"preview": "NODE_ENV=production node --env-file=./.env dist/server.js",
 		"start": "node dist/server.js"
-  },
-  "devDependencies": {
-    "@digitak/tsc-esm": "^3.1.4",
-    "@types/node": "^22.9.4",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
-  },
-  "type": "module"
+	},
+	"devDependencies": {
+		"@digitak/tsc-esm": "^3.1.4",
+		"@types/node": "^22.9.4",
+		"tsx": "^4.19.2",
+		"typescript": "^5.7.2"
+	},
+	"type": "module"
 }
