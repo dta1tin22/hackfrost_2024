@@ -6,14 +6,20 @@ import { Response } from "express"
 import {FindStormByID} from "./routes/stormByID"
 import { SendDataFromAPI } from "./routes/SendData"
 import { SearchStorm } from "./routes/SearchStorms"
-
+import cors, { CorsOptions } from "cors"
 
 const app = Express()
+
+const corsOptions : CorsOptions = {
+    origin: process.env.CLIENT_URL,
+    optionsSuccessStatus: 200
+}
 
 // middleware
 app.use (Express.json())
 app.use (Express.urlencoded ({extended: false}))
 
+app.use(cors(corsOptions))
 
 // connect to database
 mongoose.connect (process.env.STORMS_DB_URL as string)
