@@ -235,7 +235,7 @@
 	{#if isSeaching}
 		<section class="space-y-8">
 			<Categories>Search Results</Categories>
-      <StormDisplay stormsInformation={liveStorms}/>
+     		<StormDisplay stormsInformation={liveStorms}/>
 		</section>
 	{:else}
 		<section class="space-y-8 mb-28">

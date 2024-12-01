@@ -10,13 +10,13 @@
 </script>
 
 <a href="/fsdaf">
-	<div class="bg-slate-100 min-h-40  rounded-lg p-4 hover:opacity-100 opacity-85">
+	<div class="bg-slate-100 min-h-40 rounded-lg p-4 hover:opacity-100 opacity-85">
 		<h2 class="text-2xl font-bold mb-4">{stormInformation.name}</h2>
 		<ul class="space-y-1">
 			<li class="flex items-center space-x-2">
-				<Wind/>
+				<Wind/> 
 				<span class="text-lg font-semibold">Maximum Wind Speed: </span>
-				<span class="truncate">{stormInformation.maximum_wind_speed}</span>
+				<span class="truncate max-w-20">{stormInformation.maximum_wind_speed}</span>
 			</li>
 			<li class="flex items-center space-x-2">
 				<Users/>

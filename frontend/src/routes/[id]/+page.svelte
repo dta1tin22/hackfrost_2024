@@ -3,6 +3,8 @@
 	import StormDataTable from "$components/StormDataTable.svelte";
 	import StormInfoCard from "$components/StormInfoCard.svelte";
 	import StormScoreBar from "$components/StormScoreBar.svelte";
+	import Categories from '$components/Categories.svelte';
+	import StormDisplay from '$components/StormDisplay.svelte';
 	import type { StormInformation } from "$lib";
 
 	const data : StormInformation = {
@@ -16,6 +18,7 @@
 		vulnerability: 'High (India)',
 		gdacs_score: 1.5
 	}
+	let isSeaching = $state(false);
 </script>
 
 
@@ -24,15 +27,28 @@
 	<meta name="description" content="Storm Tracker"/>
 </svelte:head>
 
-<Header/>
+<Header onSearch={(searchValue) => {
+	if(searchValue.length > 0) isSeaching = true;
+	else isSeaching = false;
+	console.log("here")
+}} />
 
-<section class="py-10 space-y-10 max-w-4xl mx-auto">
-	<h1 class="text-slate-200 text-4xl font-bold text-center">{data.name} Information</h1>
-	<div class="bg-slate-100 opacity-85 rounded-lg p-6 space-y-10">
-		<StormDataTable data={data} />
-		<div class="space-y-4">
-			<h2 class="text-2xl font-semibold">Storm Severity Score</h2>
-			<StormScoreBar score={data.gdacs_score}/>
-		</div>
-	</div>
-</section>
+<div>
+	{#if isSeaching}
+		<section class="space-y-8">
+			<Categories>Search Results</Categories>
+     		<StormDisplay stormsInformation={liveStorms}/>
+		</section>
+	{:else} 
+		<section class="py-10 space-y-10 max-w-4xl mx-auto">
+			<h1 class="text-slate-200 text-4xl font-bold text-center">{data.name} Information</h1>
+			<div class="bg-slate-100 opacity-85 rounded-lg p-6 space-y-10">
+				<StormDataTable data={data} />
+				<div class="space-y-4">
+					<h2 class="text-2xl font-semibold">Storm Severity Score</h2>
+					<StormScoreBar score={data.gdacs_score}/>
+				</div>
+			</div>
+		</section>
+	{/if}
+</div>
