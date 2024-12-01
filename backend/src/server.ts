@@ -4,8 +4,10 @@ import {storm} from "./controllers/models/Storm.model"
 import { Request } from "express"
 import { Response } from "express"
 import {FindStormByID} from "./routes/stormByID"
+import { SendDataFromAPI } from "./routes/SendData"
 import { SendData } from "./controllers/SendDataToDB"
 import { SearchStorm } from "./routes/SearchStorms"
+
 
 const app = Express()
 
@@ -20,9 +22,9 @@ mongoose.connect (process.env.STORMS_DB_URL as string)
     .catch (() => console.log ("Connection failed"))
 
 
-// Get a particular Storm
-SearchStorm (app)
-FindStormByID (app)
+SendDataFromAPI(app)
+// FindStormByID (app)
+
 
 
 // get the entire Storms from DB
@@ -34,12 +36,6 @@ app.get ('/', async (req : Request, res : Response) => {
         res.status (500).json ({message : error.message})
     }
 })
-
-
-// Just for Test
-app.post ('/', SendData)
-
-
 
 
 app.listen (process.env.PORT)
