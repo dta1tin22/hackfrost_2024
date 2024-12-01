@@ -5,7 +5,6 @@ import { Request } from "express"
 import { Response } from "express"
 import {FindStormByID} from "./routes/stormByID"
 import { SendDataFromAPI } from "./routes/SendData"
-import { SendData } from "./controllers/SendDataToDB"
 import { SearchStorm } from "./routes/SearchStorms"
 
 
@@ -22,8 +21,10 @@ mongoose.connect (process.env.STORMS_DB_URL as string)
     .catch (() => console.log ("Connection failed"))
 
 
+
 SendDataFromAPI(app)
-// FindStormByID (app)
+SearchStorm (app)
+FindStormByID (app)
 
 
 
