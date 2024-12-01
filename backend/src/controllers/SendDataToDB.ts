@@ -5,33 +5,20 @@ import { Transform } from '../utils/TransfromJSON';
 export const SendData = async (req: Request, res: Response) => {
 	try {
 		const New = req.body.stormsInformation as Array<IncomingModel>;
-		// console.log (newStorms[0])
 		const newStorms = await Transform(New);
 
-		// Update storms, add if they haven't existed
-		const bulk = await newStorms.map((OneStorm: StormModel) => ({
-			updateOne: {
-				filter: { name: OneStorm.name },
-				update: OneStorm,
-				upsert: true
+		// Delete all old data
+		await storm.deleteMany({})
+		
+		// Update new data
+		const bulk = newStorms.map((OneStorm: StormModel) => ({
+			insertOne: {
+				document: OneStorm
 			}
 		}));
+		await storm.bulkWrite(bulk)
 
-		const Upload = await storm.bulkWrite(bulk);
-
-		// change state of storms that aren't on the updated list from ongoing to history
-		const NameOfStorms = await newStorms.map((OneStorm: StormModel) => OneStorm.name);
-
-		const ExpiredStorms = await storm.updateMany(
-			{
-				name: { $nin: NameOfStorms }
-			},
-			{
-				ended: true
-			}
-		);
-
-		console.log('SUCCESS', Upload, ExpiredStorms);
+		console.log('SUCCESS', newStorms);
 		res.status(200).send({
 			message: 'success'
 		});
