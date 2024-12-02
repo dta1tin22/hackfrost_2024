@@ -7,19 +7,19 @@
 
 	const { data } = $props();
 
-	const liveStorms = data.liveStorms
-	const history = data.historyStorms
+	const liveStorms = data.liveStorms;
+	const history = data.historyStorms;
 
 	let isSeaching = $state(false);
-	let searchResult: StormInformation[] | null = $state(null)
+	let searchResult: StormInformation[] | null = $state(null);
 
 	const searchStorms = async (value: string) => {
-		const response = await fetch(`${PUBLIC_SERVER_URL}/search?value=${value}`)
+		const response = await fetch(`${PUBLIC_SERVER_URL}/search?value=${value}`);
 
 		const data = await response.json();
 
 		return data.stormsInformation as StormInformation[];
-	}
+	};
 </script>
 
 <svelte:head>
@@ -37,7 +37,7 @@
 
 <div class="my-8 space-y-20">
 	{#if isSeaching && searchResult}
-			{#if searchResult.length > 0}
+		{#if searchResult.length > 0}
 			<section class="py-10 space-y-8">
 				<Categories>Search Results</Categories>
 				<StormDisplay stormsInformation={searchResult} />

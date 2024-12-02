@@ -9,22 +9,21 @@ export const SendData = async (req: Request, res: Response) => {
 		const newStorms = await Transform(New);
 
 		// Delete all old data
-		await storm.deleteMany({})
-		
+		await storm.deleteMany({});
+
 		// Update new data
 		const bulk = newStorms.map((OneStorm: StormModel) => {
-			console.log(OneStorm)
+			// console.log(OneStorm)
 			return {
-				insertOne:{
+				insertOne: {
 					document: OneStorm
 				}
-			}
+			};
 		});
 
-		
-		await storm.bulkWrite(bulk)
-		
-		console.log(bulk[0].insertOne.document)
+		await storm.bulkWrite(bulk);
+
+		// console.log(bulk[0].insertOne.document)
 		// console.log('SUCCESS', bulk[0].insertOne.document);
 		res.status(200).send({
 			message: 'success'

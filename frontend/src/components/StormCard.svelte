@@ -4,23 +4,23 @@
 
 	interface StormCardProps {
 		stormInformation: StormInformation;
-		isClick?: boolean
+		isClick?: boolean;
 	}
 
 	let { stormInformation, isClick = $bindable<boolean>(false) }: StormCardProps = $props();
-	let thisComponents = $state<HTMLAnchorElement | null>()
+	let thisComponents = $state<HTMLAnchorElement | null>();
 
 	$effect(() => {
 		const onClickHandler = () => {
 			isClick = true;
-		}
+		};
 
-		thisComponents?.addEventListener('click', onClickHandler)
+		thisComponents?.addEventListener('click', onClickHandler);
 
 		return () => {
-			thisComponents?.removeEventListener('click', onClickHandler)
-		}
-	})
+			thisComponents?.removeEventListener('click', onClickHandler);
+		};
+	});
 </script>
 
 <a bind:this={thisComponents} href={`/${stormInformation._id}`}>

@@ -10,7 +10,8 @@
 		isClickOnCard?: boolean;
 	}
 
-	let { stormsInformation, isClickOnCard = $bindable<boolean>(false) }: StormDisplayProps = $props();
+	let { stormsInformation, isClickOnCard = $bindable<boolean>(false) }: StormDisplayProps =
+		$props();
 
 	let emblaApi: EmblaCarouselType | null = $state(null);
 	let canScrollPrevious = $state(false);

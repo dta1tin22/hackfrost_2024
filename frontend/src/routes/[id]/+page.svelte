@@ -7,26 +7,26 @@
 	import { type StormInformation } from '$lib';
 	import { PUBLIC_SERVER_URL } from '$env/static/public';
 
-	const { data } = $props()
+	const { data } = $props();
 	let isSeaching = $state(false);
-	let searchResult: StormInformation[] | null = $state(null)
+	let searchResult: StormInformation[] | null = $state(null);
 
 	const searchStorms = async (value: string) => {
-		const response = await fetch(`${PUBLIC_SERVER_URL}/search?value=${value}`)
+		const response = await fetch(`${PUBLIC_SERVER_URL}/search?value=${value}`);
 
 		const data = await response.json();
 
 		return data.stormsInformation as StormInformation[];
-	}
+	};
 
 	let isAccess = $state(false);
 
 	$effect(() => {
-		if(isAccess){
+		if (isAccess) {
 			isSeaching = false;
 			isAccess = false;
 		}
-	})
+	});
 </script>
 
 <svelte:head>
@@ -38,7 +38,7 @@
 	onSearch={async (searchValue) => {
 		if (searchValue.length > 0) isSeaching = true;
 		else isSeaching = false;
-		searchResult = await searchStorms(searchValue)
+		searchResult = await searchStorms(searchValue);
 	}}
 />
 

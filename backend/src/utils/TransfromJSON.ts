@@ -1,53 +1,53 @@
 import express from 'express';
 
 const parseMonth = (monthString: string) => {
-	switch(monthString){
+	switch (monthString) {
 		case 'Jan':
 			return 1;
-    case 'Feb':
+		case 'Feb':
 			return 2;
 		case 'Mar':
 			return 3;
-    case 'Apr':
+		case 'Apr':
 			return 4;
 		case 'May':
 			return 5;
-    case 'Jun':
+		case 'Jun':
 			return 6;
 		case 'Jul':
 			return 7;
-    case 'Aug':
-      return 8;
-    case 'Sep':
+		case 'Aug':
+			return 8;
+		case 'Sep':
 			return 9;
 		case 'Oct':
 			return 10;
-    case 'Nov':
+		case 'Nov':
 			return 11;
 		case 'Dec':
 			return 12;
-    default:
+		default:
 			return 0;
 	}
-}
+};
 
 const isEnded = (date: string) => {
 	const formatDate = date.split(' ');
 	const dayEnd = parseInt(formatDate[0]);
 	const monthEnd = parseMonth(formatDate[1]);
 
-	const currentDate = new Date()
+	const currentDate = new Date();
 
 	const currentDay = currentDate.getDate();
 	const currentMonth = currentDate.getMonth() + 1;
 
-	if(monthEnd === currentMonth){
-		if(dayEnd < currentDay) return true;
+	if (monthEnd === currentMonth) {
+		if (dayEnd < currentDay) return true;
 		return false;
 	}
 
 	return true;
-}
+};
 
 export const Transform = async (Storms: Array<IncomingModel>) => {
 	let Result = await Storms.map((OneStorm: IncomingModel) => ({

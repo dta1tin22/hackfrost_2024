@@ -1,28 +1,28 @@
 // import puppeteer from "puppeteer";
 // import * as cheerio from "cheerio";
 
-const puppeteer = require("puppeteer")
-const cheerio = require("cheerio")
+const puppeteer = require('puppeteer');
+const cheerio = require('cheerio');
 
-const SOURCE_URL = "https://www.gdacs.org"
-const BACKEND_URL = "http://stegg-fedora:3000"
+const SOURCE_URL = 'https://www.gdacs.org';
+const BACKEND_URL = 'http://stegg-fedora:3000';
 
 /**
  * @returns {string}
- * @param {string} label 
+ * @param {string} label
  */
 const labelHandler = (label) => {
-	label = label.trim()
-	
-	if(label === 'From - To'){
-		label = 'from_to'
-	}else {
-		label = label.toLowerCase()
-		label = label.replaceAll(' ', '_')
+	label = label.trim();
+
+	if (label === 'From - To') {
+		label = 'from_to';
+	} else {
+		label = label.toLowerCase();
+		label = label.replaceAll(' ', '_');
 	}
 
 	return label;
-}
+};
 
 /**
  * @typedef {Object} StormInformation
@@ -39,14 +39,24 @@ const labelHandler = (label) => {
 
 /**
  * @returns {Promise<StormInformation>}
- * @param {import('cheerio').Cheerio<Element>} $a 
+ * @param {import('cheerio').Cheerio<Element>} $a
  * @param {import('puppeteer').Page} page
  */
 const linkHandler = async ($a, page) => {
-	const validLabels = ["gdacs_id", "name", "from_to", "exposed_countries", "exposed_population", "maximum_wind_speed", "maximum_storm_surge", "vulnerability", "gdacs_score"]
+	const validLabels = [
+		'gdacs_id',
+		'name',
+		'from_to',
+		'exposed_countries',
+		'exposed_population',
+		'maximum_wind_speed',
+		'maximum_storm_surge',
+		'vulnerability',
+		'gdacs_score'
+	];
 
 	/**@type {StormInformation} */
-	let stormInformation = {}
+	let stormInformation = {};
 
 	await page.goto(`${SOURCE_URL}/${$a.attr('href')}`);
 
@@ -55,37 +65,41 @@ const linkHandler = async ($a, page) => {
 	const $ = cheerio.load(content);
 
 	// Get summary information
-	$('table.summary > tbody').children().each((index, element) => {
-		/**@type {string} */
-		const label = labelHandler(element.children[0].children[0].data)
+	$('table.summary > tbody')
+		.children()
+		.each((index, element) => {
+			/**@type {string} */
+			const label = labelHandler(element.children[0].children[0].data);
 
-		if(!validLabels.includes(label)) return;
+			if (!validLabels.includes(label)) return;
 
-		/**@type {string} */
-		const dataElement = element.children[1].children[0]
+			/**@type {string} */
+			const dataElement = element.children[1].children[0];
 
-		if(dataElement){
-			const data = dataElement.data
-			stormInformation[label] = data.trim()
-		}else{
-			stormInformation[label] = ''
-		}
-	})
+			if (dataElement) {
+				const data = dataElement.data;
+				stormInformation[label] = data.trim();
+			} else {
+				stormInformation[label] = '';
+			}
+		});
 
 	//Get GDACS Score
-	const gdacsScoreElement = $('div#alertscorebar > div > svg > g.highcharts-data-labels').children()[0]?.children[0]?.children[0]?.children[0]
+	const gdacsScoreElement = $(
+		'div#alertscorebar > div > svg > g.highcharts-data-labels'
+	).children()[0]?.children[0]?.children[0]?.children[0];
 
-	if(gdacsScoreElement && gdacsScoreElement.data){
-		stormInformation.gdacs_score = parseFloat(gdacsScoreElement.data)
-		if(stormInformation.gdacs_score === NaN){
-			stormInformation.gdacs_score = 0
+	if (gdacsScoreElement && gdacsScoreElement.data) {
+		stormInformation.gdacs_score = parseFloat(gdacsScoreElement.data);
+		if (stormInformation.gdacs_score === NaN) {
+			stormInformation.gdacs_score = 0;
 		}
-	}else stormInformation.gdacs_score = 0
+	} else stormInformation.gdacs_score = 0;
 
-	await page.goBack()
+	await page.goBack();
 
-	return stormInformation
-}
+	return stormInformation;
+};
 
 /**
  * @returns {Promise<StormInformation[]>}
@@ -94,50 +108,50 @@ const linkHandler = async ($a, page) => {
  */
 const contentHandler = async (content, page) => {
 	/**@type {StormInformation[]} */
-	let stormsInformation = []
+	let stormsInformation = [];
 
 	const $ = cheerio.load(content);
 
-	let $ptrElement = $('div#gdacs_eventtype_TC').children()
+	let $ptrElement = $('div#gdacs_eventtype_TC').children();
 
-	while(true){
-		const $a = $ptrElement.children()
+	while (true) {
+		const $a = $ptrElement.children();
 
-		const stormInformation = await linkHandler($a, page)
+		const stormInformation = await linkHandler($a, page);
 
-		console.log(stormInformation.name)
+		console.log(stormInformation.name);
 
-		stormsInformation.push({...stormInformation})
+		stormsInformation.push({ ...stormInformation });
 
-		if($ptrElement.children().length <= 1) break;
+		if ($ptrElement.children().length <= 1) break;
 
 		$ptrElement = $a.next();
 
 		// Wait 10 seconds before fetching the next page to avoid being blocked by the website
 		await new Promise((resolve) => {
-			setTimeout(resolve, 10000)
-		})
+			setTimeout(resolve, 10000);
+		});
 	}
 
-	return stormsInformation
-}
+	return stormsInformation;
+};
 
 /**
- * @param {{stormsInformation: StormInformation[]}} data 
+ * @param {{stormsInformation: StormInformation[]}} data
  */
 const sendData = async (data) => {
 	const response = await fetch(`${BACKEND_URL}`, {
 		method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-	})
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	});
 
-	if(!response.ok){
-		console.log(`Failed to send storms information. Response status code: ${response.status}`)
+	if (!response.ok) {
+		console.log(`Failed to send storms information. Response status code: ${response.status}`);
 	}
-}
+};
 
 (async () => {
 	const browser = await puppeteer.launch({
@@ -145,22 +159,21 @@ const sendData = async (data) => {
 	});
 	// const browser = await puppeteer.launch()
 	const page = await browser.newPage();
-	await page.setViewport({width: 1080, height: 1024});
+	await page.setViewport({ width: 1080, height: 1024 });
 
 	await page.goto(SOURCE_URL);
 
 	const content = await page.content();
 
-	const stormsInformation = await contentHandler(content, page)
-
+	const stormsInformation = await contentHandler(content, page);
 
 	const data = {
 		stormsInformation
-	}
+	};
 
-	console.log(data)
+	console.log(data);
 
-	await sendData(data)
+	await sendData(data);
 
 	await browser.close();
-})()
+})();
