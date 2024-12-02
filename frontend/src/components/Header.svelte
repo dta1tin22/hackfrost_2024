@@ -36,8 +36,8 @@
 		</div>
 		<nav class="flex w-1/3 justify-center space-x-6">
 			<LinkHeader href="/">Home</LinkHeader>
-			<LinkHeader href="/fskld">About</LinkHeader>
-			<LinkHeader href="/">Contact</LinkHeader>
+			<LinkHeader href="https://github.com/dta1tin22">About</LinkHeader>
+			<LinkHeader href="https://www.facebook.com/geor.steven/">Contact</LinkHeader>
 		</nav>
 	</div>
 </header>
