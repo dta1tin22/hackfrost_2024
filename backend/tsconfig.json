@@ -1,7 +1,8 @@
 {
 	"compilerOptions": {
-		"target": "ES2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-		"module": "CommonJS" /* Specify what module code is generated. */,
+		"target": "ESNext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+		"module": "ESNext" /* Specify what module code is generated. */,
+		"moduleResolution": "Node" /* Specify how TypeScript looks up a file from a given module specifier. */,
 		"allowJs": true /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
 		"checkJs": true /* Enable error reporting in type-checked JavaScript files. */,
 		"outDir": "dist" /* Specify an output folder for all emitted files. */,
