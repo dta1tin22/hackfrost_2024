@@ -18,6 +18,15 @@
 
 		return data.stormsInformation as StormInformation[];
 	}
+
+	let isAccess = $state(false);
+
+	$effect(() => {
+		if(isAccess){
+			isSeaching = false;
+			isAccess = false;
+		}
+	})
 </script>
 
 <svelte:head>
@@ -38,7 +47,7 @@
 		{#if searchResult.length > 0}
 			<section class="py-10 space-y-8">
 				<Categories>Search Results</Categories>
-				<StormDisplay stormsInformation={searchResult} />
+				<StormDisplay bind:isClickOnCard={isAccess} stormsInformation={searchResult} />
 			</section>
 		{:else}
 			<section class="py-10">

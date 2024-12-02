@@ -7,9 +7,10 @@
 
 	interface StormDisplayProps {
 		stormsInformation: StormInformation[];
+		isClickOnCard?: boolean;
 	}
 
-	let { stormsInformation }: StormDisplayProps = $props();
+	let { stormsInformation, isClickOnCard = $bindable<boolean>(false) }: StormDisplayProps = $props();
 
 	let emblaApi: EmblaCarouselType | null = $state(null);
 	let canScrollPrevious = $state(false);
@@ -51,7 +52,7 @@
 		<div class="flex">
 			{#each stormsInformation as stormInformation}
 				<div class="flex-[0_0_33.33%] min-w-0 pr-4">
-					<StormCard {stormInformation} />
+					<StormCard bind:isClick={isClickOnCard} {stormInformation} />
 				</div>
 			{/each}
 		</div>
