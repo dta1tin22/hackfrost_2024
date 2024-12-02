@@ -1,0 +1,11 @@
+fly.toml
+Dockerfile
+.dockerignore
+node_modules
+.git
+.svelte-kit
+dist
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+.env
+.env.*
