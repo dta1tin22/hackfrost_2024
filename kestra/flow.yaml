@@ -1,5 +1,5 @@
 id: handleStormsInformation
-namespace: hackfrost_2024
+namespace: storm_tracker
 tasks:
   - id: getStormsInformation
     type: io.kestra.plugin.scripts.node.Commands

@@ -5,7 +5,7 @@ const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 
 const SOURCE_URL = 'https://www.gdacs.org';
-const BACKEND_URL = 'http://stegg-fedora:3000';
+const BACKEND_URL = 'https://stormtracker.fly.dev';
 
 /**
  * @returns {string}
